@@ -4,15 +4,11 @@ import postController from './controllers/post/post-controller';
 const app: Express = express();
 const port = 3000;
 
+app.use(postController);
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello, this is Express + TypeScript");
+  res.send("Welcome to my CMS app built with Express + Typescript");
 });
-
-// Content Post logic
-
-app.use('/post', postController);
-
 
 app.listen(port, () => {
   console.log(`[Server]: I am running at https://localhost:${port}`);
