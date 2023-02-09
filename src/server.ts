@@ -1,5 +1,5 @@
 import express, { Express, Request, Response } from "express";
-import postController from './controllers/post-controller';
+import postController from './controllers/post/post-controller';
 
 const app: Express = express();
 const port = 3000;
