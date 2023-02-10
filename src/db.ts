@@ -1,10 +1,11 @@
 import { Db, MongoClient } from "mongodb";
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 let client: MongoClient;
 let db: Db;
 
-const uri: string = process.env.MONGODB_URI ?? 
-"mongodb+srv://syedfkabir:Sf173782@cluster0.ur6lbt9.mongodb.net/?retryWrites=true&w=majority";
+const uri: string = process.env.MONGODB_URI ?? "";
 
 const connectToDatabase = async () => {
   client = new MongoClient(uri);
