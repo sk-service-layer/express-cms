@@ -8,7 +8,6 @@ dotenv.config();
 const app: Express = express();
 const port: string = process.env.PORT ?? "3001";
 
-
 // Certain routes are encapsulated in DB config bc.
 // routes would not work without stable connection 
 
