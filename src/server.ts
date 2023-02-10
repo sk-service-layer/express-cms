@@ -1,10 +1,26 @@
-import express, { Express, Request, Response } from "express";
-import postController from './controllers/post/post-controller';
+import express, { Express, Request, Response,  } from "express";
+import { connectToDatabase, db } from './db';
+import postController from "./controllers/post/post-controller";
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const app: Express = express();
-const port = 3000;
+const port = process.env.PORT;
 
 app.use(postController);
+
+
+
+connectToDatabase().then(async () => {
+  console.log('connected to DB!');
+  const collection = await db.collection('comments');
+  const cursor = collection.find({}).limit(2);
+  console.log("async");
+  for await (const doc of cursor) {
+    console.log(doc);
+  }
+  console.log('reached')
+})
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Welcome to my CMS app built with Express + Typescript");
