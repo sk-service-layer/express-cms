@@ -1,5 +1,6 @@
 import express, { Router, Request, Response } from "express";
 import * as postService from "./service";
+import { Post } from "./types";
 
 const router: Router = express.Router();
 
@@ -15,7 +16,9 @@ router.get("/posts", async (req: Request, res: Response) => {
 
 router.post("/post", async (req: Request, res: Response) => {
   try {
-    res.status(201);
+    const post: Post = await req.body;
+    postService.createPost(post);
+    res.sendStatus(201);
   } catch (e: any) {
     res.status(500).send(e.toString());
   }

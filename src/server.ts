@@ -7,6 +7,9 @@ import * as dotenv from "dotenv";
 dotenv.config();
 const app: Express = express();
 const port: string = process.env.PORT ?? "3001";
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Certain routes are encapsulated in DB config bc.
 // routes would not work without stable connection 
