@@ -2,17 +2,17 @@ import { Collection, Document, ObjectId } from "mongodb";
 import { db } from "../../db";
 import { Post } from "./types";
 
-// [TODO]: make sure return type is correct
-export async function getPosts(): Promise<any> {
-  const collection: Collection = await db.collection("posts");
-  const cursor = collection.find({}).limit(2);
 
+export async function getPosts(): Promise<Document[]> {
+  const collection: Collection = await db.collection("posts");
+  const cursor = collection.find();
   const docs: Document[] = [];
+  
   await cursor.forEach((doc) => {
     docs.push(doc);
   });
 
-  return { docs };
+  return docs;
 }
 
 export async function createPost(post: Post): Promise<void> {
