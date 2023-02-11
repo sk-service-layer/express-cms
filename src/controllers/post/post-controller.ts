@@ -17,7 +17,7 @@ router.get("/posts", async (req: Request, res: Response) => {
 router.post("/post", async (req: Request, res: Response) => {
   try {
     const post: Post = await req.body;
-    postService.createPost(post);
+    await postService.createPost(post);
     res.sendStatus(201);
   } catch (e: any) {
     res.status(500).send(e.toString());

@@ -10,7 +10,7 @@ const uri: string = process.env.MONGODB_URI ?? "";
 const connectToDatabase = async () => {
   client = new MongoClient(uri);
   await client.connect();
-  db = client.db("sample_mflix");
+  db = client.db("cms_dev");
 };
 
 export { connectToDatabase, client, db };
