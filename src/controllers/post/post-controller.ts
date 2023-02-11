@@ -8,7 +8,7 @@ router.get("/posts", async (req: Request, res: Response) => {
   try {
     const posts = await postService.getPosts();
     res.send(posts);
-    res.status(200);
+    res.sendStatus(200);
   } catch (e: any) {
     res.status(500).send(e.toString());
   }
@@ -19,6 +19,16 @@ router.post("/post", async (req: Request, res: Response) => {
     const post: Post = await req.body;
     await postService.createPost(post);
     res.sendStatus(201);
+  } catch (e: any) {
+    res.status(500).send(e.toString());
+  }
+});
+
+router.delete("/post", async (req: Request, res: Response) => {
+  try {
+    const id = await req.body.id;
+    const result = await postService.deletePost(id);
+    result ? res.sendStatus(200) : res.sendStatus(409);
   } catch (e: any) {
     res.status(500).send(e.toString());
   }
