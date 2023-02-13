@@ -1,7 +1,8 @@
 import express, { Express, Request, Response } from "express";
-import { connectToDatabase, db } from "./db";
+import { connectToDatabase } from "./db";
 import postController from "./controllers/post/post-controller";
 import * as dotenv from "dotenv";
+
 
 // Config
 dotenv.config();
@@ -11,8 +12,6 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Certain routes are encapsulated in DB config bc.
-// routes would not work without stable connection 
 
 // DB
 connectToDatabase().then(async () => {
