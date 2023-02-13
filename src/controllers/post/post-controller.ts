@@ -8,7 +8,27 @@ router.get("/posts", async (req: Request, res: Response) => {
   try {
     const posts = await postService.getPosts();
     res.send(posts);
-    res.sendStatus(200);
+  } catch (e: any) {
+    res.status(500).send(e.toString());
+  }
+});
+
+router.get("/posts/:licencePlate", async (req: Request, res: Response) => {
+  try {
+    const licencePlate = req.params.licencePlate;
+    const posts = await postService.getPostByLicencePlate(licencePlate);
+    res.send(posts);
+  } catch (e: any) {
+    res.status(500).send(e.toString());
+  }
+});
+
+// Under Construction
+router.get("/userPosts", async (req: Request, res: Response) => {
+  try {
+    const username = req.body.username;
+    const posts = await postService.getPostByUsername(username);
+    res.send(posts);
   } catch (e: any) {
     res.status(500).send(e.toString());
   }
