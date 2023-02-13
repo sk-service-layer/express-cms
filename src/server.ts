@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import { connectToDatabase } from "./db";
 import postController from "./controllers/post/post-controller";
+import userController from "./controllers/user/user-controller";
 import * as dotenv from "dotenv";
 
 
@@ -12,6 +13,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use(userController);
 
 // DB
 connectToDatabase().then(async () => {
