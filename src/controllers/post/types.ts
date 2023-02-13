@@ -1,4 +1,4 @@
-import { User } from "../login/types";
+import { User } from "../user/types";
 
 export type Post = {
   rating: number;
