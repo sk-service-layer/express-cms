@@ -14,4 +14,15 @@ router.get("/signUp", async (req: Request, res: Response) => {
   }
 });
 
+router.get("/login", async (req: Request, res: Response) => {
+    try {
+      const credentials: User = req.body;
+      const user = await userService.login(credentials);
+      console.log(user);
+      res.send(user);
+    } catch (e: any) {
+      res.status(500).send(e.toString());
+    }
+  });
+
 export default router;
